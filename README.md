@@ -141,9 +141,6 @@ We aim to develop a 3D Navigable Globe for visualizing cetacean sightings and co
 - 📘 [Process Book (PDF)](https://github.com/CamilleChallier/DataViz_WhereWereWhales/blob/master/Milestone_3/process_book.pdf)  
   A detailed overview of our project goals, design process, methodology, and evaluation.
 
-- 🎥 [Presentation Video](https://github.com/CamilleChallier/DataViz_WhereWereWhales/blob/master/Milestone_3/)  
-  A short video walkthrough showcasing our data visualization project and key insights.
-
 - 🌐 [Final Project Website](https://camillechallier.github.io/DataViz_WhereWereWhales/index.html)  
   Explore the live interactive visualization and learn more about our findings.
 
