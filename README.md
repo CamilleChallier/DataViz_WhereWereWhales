@@ -132,19 +132,19 @@ We aim to develop a 3D Navigable Globe for visualizing cetacean sightings and co
 
 
 ## Milestone 2 (18th April, 5pm)
-[pdf file](https://github.com/com-480-data-visualization/WhereWereWhales/blob/master/Milestone_2/Milestone%202.pdf)
+[pdf file](https://github.com/CamilleChallier/DataViz_WhereWereWhales/blob/master/Milestone_2/Milestone%202.pdf)
 
 ## Milestone 3 (30th May, 5pm)
 
 ### Deliverable:
 
-- 📘 [Process Book (PDF)](https://github.com/com-480-data-visualization/WhereWereWhales/blob/master/Milestone_3/process_book.pdf)  
+- 📘 [Process Book (PDF)](https://github.com/CamilleChallier/DataViz_WhereWereWhales/blob/master/Milestone_3/process_book.pdf)  
   A detailed overview of our project goals, design process, methodology, and evaluation.
 
-- 🎥 [Presentation Video](https://github.com/com-480-data-visualization/WhereWereWhales/blob/master/Milestone_3/)  
+- 🎥 [Presentation Video](https://github.com/CamilleChallier/DataViz_WhereWereWhales/blob/master/Milestone_3/)  
   A short video walkthrough showcasing our data visualization project and key insights.
 
-- 🌐 [Final Project Website](https://eglantine-vialaneix.github.io/WhereWereWhalesLFS/)  
+- 🌐 [Final Project Website](https://camillechallier.github.io/DataViz_WhereWereWhales/index.html)  
   Explore the live interactive visualization and learn more about our findings.
 
 ###  Organisation:
