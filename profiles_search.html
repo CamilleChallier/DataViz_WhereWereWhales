@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Cetacean profile</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="docs/assets/logo_whale_remake_circle.png" />
+  
+    <!-- Stylesheets -->
+    <link href="docs/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="docs/maps/style.css" />
+    
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+    <!-- Bootstrap CSS 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-ltrjvnR4GeARYWzZ5PzNXN12M1l9xR+1FQ6vMZVZ1F4UgDWrU4oJ1p7b6u9I4gUl" crossorigin="anonymous"></script>
+    -->
+    
+    <!-- D3.js -->
+    <script src="https://d3js.org/d3.v6.js"></script>
+</head>
+
+<body style="margin:0;">
+  <!-- Back to Home Button -->
+  <nav class="navbar navbar-expand-lg blue-navbar fixed-top" id="mainNav">
+
+    <div class="container px-4 px-lg-5">
+      <a class="navbar-brand" href="index.html">Cetacea</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="maps.html">Map</a></li>
+          <li class="nav-item"><a class="nav-link" href="phylogenetic_tree.html">Tree of life</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="width-limited">
+    <div class="hero-search-container">
+      <form id="main-search-form" class="search-wrapper">
+        <input type="text" id="main-search-input" placeholder="e.g. blue whale" aria-label="Search cetaceans" required/>
+        <button type="submit" id="main-btn-search">Search</button>
+      </form>
+    </div>
+
+    <section class="gallery-section bg-light py-5">
+      <div class="container px-4 px-lg-5 text-center">
+        <h2 class="text-black mb-4">Cetacean Profiles</h2>
+        <div class="row" id="gallery-container"></div>
+      </div>
+    </section>
+
+        <!-- Floating Info Button -->
+    <div id="info-button" 
+      style="position: fixed; top: 80px; right: 20px; cursor: pointer; 
+              background: #ff6f61; /* warning reddish-orange */
+              padding: 10px; border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.3); z-index: 1100; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;">
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24" stroke="none" stroke-width="2" style="position: relative;">
+      <path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/>
+      <circle cx="12" cy="12" r="2.5" fill="white"/>
+    </svg>
+
+  </div>
+
+    <!-- Disclaimer Modal -->
+    <div id="disclaimerModal" style="display:none; position: fixed; z-index: 1050; left: 0; top: 0; width: 100%; height: 100%;
+        overflow: auto; background-color: rgba(0,0,0,0.5);">
+      <div style="background: white; margin: auto; padding: 20px; border-radius: 8px; width: 90%; max-width: 550px; 
+          position: relative; top: 50%; transform: translateY(-50%);
+          display: flex; flex-direction: column; justify-content: center; height: auto; min-height: 300px;">
+        
+        <!-- Header centered horizontally -->
+        <h2 style="text-align: center;">⚠️ Warning: Sensitive Images ⚠️</h2>
+        
+        <!-- Paragraph container with thinner width -->
+        <div style="flex-grow: 1; display: flex; align-items: center; justify-content: center;">
+          <p style="max-width: 80%; text-align: center; margin: 0;">
+            Some cetacean profiles may contain images that some viewers could find sensitive or disturbing.<br>
+            Viewer discretion is advised.<br><br>
+            This may include: blood, injured animals, dead animals, animal abuse, animal mating.
+          </p>
+        </div>
+
+        <!-- Button bottom-right -->
+        <button id="closeDisclaimer" style="position: absolute; bottom: 20px; right: 20px;
+            background-color: #ff6f61; color: white; border: none; padding: 8px 16px;
+            border-radius: 4px; cursor: pointer;">Close</button>
+      </div>
+    </div>
+
+
+
+  </main>
+
+  <style>
+    /* Your existing navbar styles remain the same */
+    
+    /* New styles for the hero search */
+    .hero-search-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px; /* Space below navbar */
+      margin-bottom: 40px; /* Less space before gallery */
+    }
+
+    
+    .search-wrapper {
+      display: flex;
+      width: 100%;
+      max-width: 600px; /* Wider than the navbar version */
+    }
+    
+    #main-search-input {
+      height: 50px; /* Taller than navbar version */
+      width: 100%;
+      border-radius: 4px 0 0 4px;
+      border: 1px solid #64a19d;
+      padding: 0 20px;
+      font-size: 1.1rem;
+    }
+    
+    #main-btn-search {
+      height: 50px; /* Matches input height */
+      border-radius: 0 4px 4px 0;
+      border: none;
+      background: #64a19d;
+      color: white;
+      padding: 0 30px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    
+    #main-btn-search:hover {
+      background: #4e8a87;
+    }
+
+    
+    .gallery-card {
+      display: flex;
+      flex-direction: row;
+      height: 200px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: none;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+
+    .gallery-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+
+    .gallery-image {
+      object-fit: cover;
+      width: 50%; /* takes left half */
+      /* height: 100%; */
+    }
+
+
+    .card-body {
+      background-color: white;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 50%;
+    }
+
+
+    .cetacean-names {
+      font-size: 1rem;
+      color: #333;
+    }
+
+
+
+
+
+  </style>
+
+  <script src="docs/profiles/profiles.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    fetch('data/cetacean_names.json')
+    .then(response => response.json())
+    .then(data => {
+      const container = document.getElementById('gallery-container');
+
+      data.forEach(cetacean => {
+        const card = document.createElement('div');
+        card.className = 'col-12 col-md-6 mb-4'; // Makes each card span more width
+        card.innerHTML = `
+          <div class="card gallery-card h-100">
+            <img src="${cetacean["Image URL"]}" class="gallery-image" alt="${cetacean["Common name"]}">
+            <div class="card-body">
+              <h5 class="cetacean-names">${cetacean["Common name"]}</h5>
+              <p class="text-muted"><em>${cetacean["Scientific name"]}</em></p>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(card);
+
+        card.addEventListener("click", function(event) {
+          const encodedSpeciesName = encodeURIComponent(cetacean["Scientific name"]);
+          window.open(`profiles.html?search=${encodedSpeciesName}`, '_blank');
+        });
+      });
+
+    })
+    .catch(error => console.error('Error loading cetacean profiles:', error));
+  </script>
+
+
+
+</body>
